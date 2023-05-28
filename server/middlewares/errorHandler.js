@@ -29,7 +29,7 @@ const errorHandler = (err, req, res, next) => {
   // Checking Authorization error.
   // 1. Auth header not set.
   // 2. Auth token not Provided.
-  // 3. Invalid auth token.
+  // 3. Invalid auth token (Expired and Distorted).
   if (err.name === 'AuthorizationError') {
     error.message = err.message;
     status = 403;
@@ -37,7 +37,7 @@ const errorHandler = (err, req, res, next) => {
 
   // Default error.
   if (status === 500) {
-    error.message = 'Internal Server Error';
+    error.message = err.message;
     error.stack = err.stack;
   }
 

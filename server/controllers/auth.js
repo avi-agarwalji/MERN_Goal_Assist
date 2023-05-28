@@ -4,8 +4,7 @@ import User from '../models/User.js';
 
 const signin = async (req, res, next) => {
   const password = req.body.password;
-  // Email is stored in lowercase.
-  const email = req.body.email.toLowerCase();
+  const email = req.body.email.toLowerCase(); // Email is stored in lowercase.
 
   const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -34,8 +33,11 @@ const signin = async (req, res, next) => {
     // Removing the password from the user object.
     user.password = undefined;
 
+    // Setting user id and user name in token as a payload to besend in JWT. We can use this later to verify which user is currently logged in.
+    const payload = { id: user._id, name: user.name };
+
     // If email exists and password matches then generating the jwt token for user authentication.
-    const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: 2 * 60 });
+    const token = jwt.sign({ ...payload }, JWT_SECRET, { expiresIn: '1d' });
 
     // If everything went as expected, then sending the success message, user and the jwt token for user authentication.
     return res.status(200).json({ user, token });
@@ -47,12 +49,10 @@ const signin = async (req, res, next) => {
 
 const signup = async (req, res, next) => {
   const name = req.body.name;
-  // Storing the user email in lowercase only.
-  const email = req.body.email.toLowerCase();
+  const email = req.body.email.toLowerCase(); // Storing the user email in lowercase only.
   const password = req.body.password;
 
   const JWT_SECRET = process.env.JWT_SECRET;
-
   // Trying to save user in mongoDB.
   try {
     // Creating new instance of user.
@@ -63,8 +63,10 @@ const signup = async (req, res, next) => {
     // Removing the password from the newly created user.
     user.password = undefined;
 
+    // Setting user id and user name in token as a payload to besend in JWT. We can use this later to verify which user is currently logged in.
+    const payload = { id: user._id, name };
     // Generating jwt token for user authentication which expires in 2 mins.
-    const token = jwt.sign({ user }, JWT_SECRET, { expiresIn: 2 * 60 });
+    const token = jwt.sign({ ...payload }, JWT_SECRET, { expiresIn: '1d' });
 
     // If everything went as expected, then sending the success message, new user and the jwt token for user authentication.
     return res.status(201).json({ user, token });

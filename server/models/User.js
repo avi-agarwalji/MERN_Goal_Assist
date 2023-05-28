@@ -17,6 +17,12 @@ const userSchema = new Schema(
       required: true,
       minlength: 6,
     },
+    goals: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Goal',
+      },
+    ],
   },
   { timestamps: true }
 );

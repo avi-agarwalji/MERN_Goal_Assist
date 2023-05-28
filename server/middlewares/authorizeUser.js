@@ -28,7 +28,7 @@ const authorizeUser = (req, res, next) => {
     };
 
   // Validating jwt.
-  jwt.verify(token, JWT_SECRET, (err, token) => {
+  jwt.verify(token, JWT_SECRET, (err, payload) => {
     if (err) {
       if (err.name === 'TokenExpiredError')
         throw {
@@ -38,11 +38,11 @@ const authorizeUser = (req, res, next) => {
       if (err.name === 'JsonWebTokenError')
         throw {
           name: 'AuthorizationError',
-          message: 'Malformed token provided.',
+          message: 'Distorted token provided.',
         };
     }
     // Setting the user to current logged in user.
-    req.user = token;
+    req.user = payload;
   });
 
   next();
