@@ -1,0 +1,136 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+a {
+  text-decoration: none;
+  color: aqua;
+}
+
+.navbar {
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #444;
+  box-shadow: 1px 1px 3px rgba(217, 213, 213, 0.152);
+}
+
+.navbar__logo {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 1.8px;
+}
+
+.navbar__logo:hover {
+  opacity: 0.8;
+}
+
+.navbar__link {
+  font-size: 18px;
+}
+
+.navbar__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  opacity: 0.8;
+}
+
+.navbar__link--spacing {
+  margin-right: 12px;
+}
+
+.form {
+  border: 1px solid #444;
+  max-width: 640px;
+  margin-inline: auto;
+  margin-top: 32px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 3px rgba(217, 213, 213, 0.152);
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 48px;
+}
+
+.form__heading {
+  color: aqua;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+.form__element {
+  background: #444;
+  color: rgba(245, 245, 245, 0.741);
+  font-size: 1rem;
+  padding: 14px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+}
+
+.form__element::placeholder {
+  color: rgba(245, 245, 245, 0.741);
+}
+
+.form__element--submit {
+  margin-top: 1rem;
+  padding: 12px;
+  background: aqua;
+  color: #222;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+}
+
+.form__element--submit:hover {
+  opacity: 0.8;
+}
+
+.form__text {
+  color: rgba(245, 245, 245, 0.741);
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 12px;
+  }
+
+  .navbar__logo {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .navbar__link {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 12px;
+    border: none;
+    box-shadow: none;
+  }
+
+  .form {
+    padding: 4px;
+  }
+}
