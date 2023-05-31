@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSignup } from '../hooks/useSignup';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [signup, loading, error] = useSignup();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await signup(name, email, password);
   };
 
   return (
     <div className="form">
       <form className="form__container">
         <h2 className="form__heading">Signup</h2>
+        {error && <div className="form__error">{error}</div>}
         <input
           type="text"
           className="form__element"

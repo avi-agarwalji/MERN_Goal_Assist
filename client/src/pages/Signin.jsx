@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSignin } from '../hooks/useSignin';
 
 function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signin, loading, error] = useSignin();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await signin(email, password);
   };
 
   return (
     <form className="form">
       <div className="form__container">
         <h2 className="form__heading">SignIn</h2>
+        {error && <div className="form__error">{error}</div>}
         <input
           type="text"
           className="form__element"
