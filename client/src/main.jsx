@@ -4,11 +4,14 @@ import App from './App.jsx';
 import './index.css';
 
 import { AuthContextProvider } from './context/AuthContext.jsx';
+import { GoalCotnextProvider } from './context/GoalCotext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <GoalCotnextProvider>
+        <App />
+      </GoalCotnextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

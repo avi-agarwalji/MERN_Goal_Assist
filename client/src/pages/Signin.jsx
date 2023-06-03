@@ -19,7 +19,7 @@ function Signin() {
         {error && <div className="form__error">{error}</div>}
         <input
           type="text"
-          className="form__element"
+          className="form__input"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -27,15 +27,11 @@ function Signin() {
         <input
           type="password"
           placeholder="Enter your password"
-          className="form__element"
+          className="form__input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button
-          type="submit"
-          className="form__element--submit"
-          onClick={handleSubmit}
-        >
+        <button type="submit" className="form__button" onClick={handleSubmit}>
           Signin
         </button>
         <p className="form__text">
