@@ -12,6 +12,7 @@ function Dashboard() {
   const { user } = useAuthContext();
   const { goals, dispatch } = useGoalContext();
 
+  const [error, setError] = useState(null);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function Dashboard() {
         },
       });
 
-      // parsing the response data in json.
+      // parsing the response json data into js objects.
       const data = await response.json();
 
       // if any error occured in getting a response.
@@ -33,16 +34,46 @@ function Dashboard() {
         if (response.status === 403)
           // clearing the user data which contains expired token value.
           localStorage.removeItem('user');
+        setError(data.error);
       }
+
       // if request is successful.
       if (response.ok) {
-        // setting the goal state of the GoalContext.
+        // setting the goal state of the GoalContext (removing deleted goal from context).
         dispatch({ type: 'goal/fetch', payload: data });
       }
     };
 
     fetchGoals();
   }, []);
+
+  // function to handle delete goal link.
+  const handleDelete = async (id) => {
+    // check if id exists.
+    if (!id) return;
+
+    // making delete request to the server.
+    const response = await fetch(`http://localhost:4000/api/goal/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    // parsing the response json data into js objects.
+    const data = await response.json();
+
+    // if there is error in request.
+    if (!response.ok) {
+      setError(data.error);
+    }
+
+    // if request is successful.
+    if (response.ok) {
+      // handle the goal state of the GoalContext.
+      dispatch({ type: 'goal/delete', payload: data._id });
+    }
+  };
 
   // function to handle modal (open/close).
   const handleModal = (e) => {
@@ -59,6 +90,7 @@ function Dashboard() {
         </Modal>
       )}
       <div className="dashboard">
+        {error && <div className="form__error">{error}</div>}
         <div className="dashboard__button">
           <button onClick={handleModal}>Set Goal</button>
         </div>
@@ -79,7 +111,9 @@ function Dashboard() {
                     {goal.title}
                   </Link>
                   <div className="dashboard__goals--actions">
-                    <Link to="">Delete</Link>
+                    <Link to="" onClick={() => handleDelete(goal._id)}>
+                      Delete
+                    </Link>
                   </div>
                 </div>
               );

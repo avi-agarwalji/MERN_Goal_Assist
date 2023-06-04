@@ -22,7 +22,7 @@ function AddGoal({ handleModal }) {
       body: JSON.stringify({ title: goal, description }),
     });
 
-    // Parsing JSON data.
+    // Parsing the response json data into js objects.
     const data = await response.json();
 
     // If any error occured.
@@ -32,7 +32,7 @@ function AddGoal({ handleModal }) {
 
     // If request is successful
     if (response.ok) {
-      // Setting the goal state in goal context.
+      // Setting the goal state in goal context (Adding goal to the goal context).
       dispatch({ type: 'goal/add', payload: data.goal });
       // Closes the modal.
       handleModal(e);

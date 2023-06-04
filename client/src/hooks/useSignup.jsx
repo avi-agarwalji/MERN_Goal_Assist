@@ -17,6 +17,7 @@ export function useSignup() {
     });
 
     // Parses the response body as JSON and returns a Promise that resolves to the parsed JSON data.
+    // Parsing the response json data into js objects.
     const data = await response.json();
 
     // If there is any error like validation or authentication setup in.

@@ -12,7 +12,11 @@ const goalReducer = (state, action) => {
     case 'goal/fetch':
       return { goals: action.payload };
     case 'goal/add':
-      return { goals: [action.payload, ...state.goals] };
+      return { goals: [...state.goals, action.payload] };
+    case 'goal/delete':
+      return {
+        goals: state.goals.filter((goal) => goal._id !== action.payload),
+      };
     default:
       state;
   }
