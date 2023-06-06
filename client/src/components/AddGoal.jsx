@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGoalContext } from '../context/GoalCotext';
+import { useGoalContext } from '../context/GoalContext';
 import { useAuthContext } from '../context/AuthContext';
 
 function AddGoal({ handleModal }) {
@@ -40,7 +40,7 @@ function AddGoal({ handleModal }) {
   };
 
   return (
-    <form className="form__container form__container--goal">
+    <form className="form__container ">
       <h2 className="form__heading">Set Goal !</h2>
       {error && <div className="form__error">{error}</div>}
       <input
@@ -50,10 +50,10 @@ function AddGoal({ handleModal }) {
         value={goal}
         onChange={(e) => setGoal(e.target.value)}
       />
-      <input
-        type="text"
-        placeholder="Goal description here !"
+      <textarea
+        placeholder="Goal description !"
         className="form__input"
+        rows={10}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />

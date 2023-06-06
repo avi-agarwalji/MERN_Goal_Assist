@@ -1,4 +1,9 @@
 const validateInput = (req, res, next) => {
+  // Check if data is passed in body.
+  if (Object.keys(req.body).length === 0) {
+    throw { message: 'Please pass data in request body!' };
+  }
+
   const data = req.body;
 
   // Check if any of the value is empty in the request body.

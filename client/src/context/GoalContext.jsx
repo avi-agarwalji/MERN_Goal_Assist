@@ -13,6 +13,13 @@ const goalReducer = (state, action) => {
       return { goals: action.payload };
     case 'goal/add':
       return { goals: [...state.goals, action.payload] };
+    case 'goal/edit':
+      return {
+        goals: state.goals.map((goal) => {
+          if (goal._id === action.payload._id) return action.payload;
+          else return goal;
+        }),
+      };
     case 'goal/delete':
       return {
         goals: state.goals.filter((goal) => goal._id !== action.payload),
@@ -23,22 +30,22 @@ const goalReducer = (state, action) => {
 };
 
 // Creating a GoalContext.
-export const GoalCotnext = createContext();
+export const GoalContext = createContext();
 
 // Setting up the GoalContextPRovider which provides the state value to all it's child component.
-export const GoalCotnextProvider = ({ children }) => {
+export const GoalContextProvider = ({ children }) => {
   // This will act as a global state and the dispatch function is used to modify that state.
   const [state, dispatch] = useReducer(goalReducer, initialState);
 
   return (
-    <GoalCotnext.Provider value={{ ...state, dispatch }}>
+    <GoalContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </GoalCotnext.Provider>
+    </GoalContext.Provider>
   );
 };
 
 // Setting up custom useGoalContext to get access to the state values.
 export const useGoalContext = () => {
-  const context = useContext(GoalCotnext);
+  const context = useContext(GoalContext);
   return context;
 };
