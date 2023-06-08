@@ -13,12 +13,15 @@ function Goal({ goal, setError }) {
     if (!id) return;
 
     // making delete request to the server.
-    const response = await fetch(`https://goal-assist.onrender.com/api/goal/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      `https://goal-assist.onrender.com/api/goal/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     // parsing the response json data into js objects.
     const data = await response.json();
@@ -48,7 +51,10 @@ function Goal({ goal, setError }) {
       </div>
       {/* Actions */}
       <div className="goal__actions">
-        <Link className="btn" to={`http://localhost:5173/goal/${goal._id}`}>
+        <Link
+          className="btn"
+          to={`https://goal-assist.onrender.com/goal/${goal._id}`}
+        >
           Edit
         </Link>
         <Link className="btn" to="" onClick={() => handleDelete(goal._id)}>
