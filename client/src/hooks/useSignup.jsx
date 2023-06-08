@@ -10,11 +10,14 @@ export function useSignup() {
     setLoading(true);
 
     // making request to server.
-    const response = await fetch('http://localhost:4000/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
-    });
+    const response = await fetch(
+      'https://goal-assist.onrender.com/api/auth/signup',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      }
+    );
 
     // Parses the response body as JSON and returns a Promise that resolves to the parsed JSON data.
     // Parsing the response json data into js objects.

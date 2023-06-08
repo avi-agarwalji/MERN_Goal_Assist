@@ -13,7 +13,7 @@ function Goal({ goal, setError }) {
     if (!id) return;
 
     // making delete request to the server.
-    const response = await fetch(`http://localhost:4000/api/goal/${id}`, {
+    const response = await fetch(`https://goal-assist.onrender.com/api/goal/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${user.token}`,

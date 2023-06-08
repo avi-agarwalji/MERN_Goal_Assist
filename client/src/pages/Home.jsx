@@ -18,7 +18,7 @@ function Home() {
   useEffect(() => {
     // making request to fetch all the goals for the currently logged in user.
     const fetchGoals = async () => {
-      const response = await fetch('http://localhost:4000/api/goal/', {
+      const response = await fetch('https://goal-assist.onrender.com/api/goal/', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${user.token}`,

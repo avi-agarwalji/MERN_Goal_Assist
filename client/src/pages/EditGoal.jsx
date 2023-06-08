@@ -22,12 +22,15 @@ function EditGoal() {
     const fetchGoal = async () => {
       setLoading(true);
 
-      const response = await fetch(`http://localhost:4000/api/goal/${id}`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        `https://goal-assist.onrender.com/api/goal/${id}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
       // Parsing the response json data into js objects.
       const data = await response.json();
@@ -53,14 +56,17 @@ function EditGoal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // making a authorized post request to the server.
-    const response = await fetch(`http://localhost:4000/api/goal/${id}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title, description, completed }),
-    });
+    const response = await fetch(
+      `https://goal-assist.onrender.com/api/goal/${id}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, description, completed }),
+      }
+    );
 
     // Parsing the response json data into js objects.
     const data = await response.json();

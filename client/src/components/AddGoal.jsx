@@ -13,7 +13,7 @@ function AddGoal({ handleModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // making a authorized post request to the server.
-    const response = await fetch('http://localhost:4000/api/goal/', {
+    const response = await fetch('https://goal-assist.onrender.com/api/goal/', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${user.token}`,
