@@ -11,7 +11,7 @@ export function useSignup() {
 
     // making request to server.
     const response = await fetch(
-      'https://goal-assist.onrender.com/api/auth/signup',
+      'https://api-goal-assist.onrender.com/api/auth/signup',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

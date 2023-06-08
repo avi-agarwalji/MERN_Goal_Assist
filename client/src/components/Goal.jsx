@@ -14,7 +14,7 @@ function Goal({ goal, setError }) {
 
     // making delete request to the server.
     const response = await fetch(
-      `https://goal-assist.onrender.com/api/goal/${id}`,
+      `https://api-goal-assist.onrender.com/api/goal/${id}`,
       {
         method: 'DELETE',
         headers: {

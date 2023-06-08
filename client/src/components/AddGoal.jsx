@@ -13,14 +13,17 @@ function AddGoal({ handleModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // making a authorized post request to the server.
-    const response = await fetch('https://goal-assist.onrender.com/api/goal/', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ title: goal, description }),
-    });
+    const response = await fetch(
+      'https://api-goal-assist.onrender.com/api/goal/',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title: goal, description }),
+      }
+    );
 
     // Parsing the response json data into js objects.
     const data = await response.json();

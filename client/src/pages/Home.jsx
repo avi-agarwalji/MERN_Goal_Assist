@@ -18,12 +18,15 @@ function Home() {
   useEffect(() => {
     // making request to fetch all the goals for the currently logged in user.
     const fetchGoals = async () => {
-      const response = await fetch('https://goal-assist.onrender.com/api/goal/', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        'https://api-goal-assist.onrender.com/api/goal/',
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
       // parsing the response json data into js objects.
       const data = await response.json();

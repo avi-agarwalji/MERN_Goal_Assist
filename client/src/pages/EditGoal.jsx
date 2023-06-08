@@ -23,7 +23,7 @@ function EditGoal() {
       setLoading(true);
 
       const response = await fetch(
-        `https://goal-assist.onrender.com/api/goal/${id}`,
+        `https://api-goal-assist.onrender.com/api/goal/${id}`,
         {
           method: 'GET',
           headers: {
@@ -57,7 +57,7 @@ function EditGoal() {
     e.preventDefault();
     // making a authorized post request to the server.
     const response = await fetch(
-      `https://goal-assist.onrender.com/api/goal/${id}`,
+      `https://api-goal-assist.onrender.com/api/goal/${id}`,
       {
         method: 'PUT',
         headers: {
