@@ -2,6 +2,10 @@
 
 Goal Assist is a MERN (MongoDB, Express.js, React.js, Node.js) application that provides user authentication and authorization features, allowing users to manage their personal goals. It uses JWT (JSON Web Tokens) for authentication and authorization purposes, where each user can only see their own goals.
 
+#### You can access it's frontend [here](https://goal-assist.onrender.com)
+
+#### You can access it's backend [here](https://api-goal-assist.onrender.com):
+
 ## Features
 
 - User authentication and authorization
